@@ -1,0 +1,270 @@
+// @ jenish
+import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
+
+public class App {
+
+    public static int numberOfDiceToSetAside = 0;
+    public static boolean[] categoriesSelected = new boolean[7];
+    private static final Random random = new Random();
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Welcome to the Strategic Dice Game!");
+        boolean playGame = askToPlay(scanner);
+
+        if (playGame) {
+            playGame(scanner);
+        } else {
+            System.out.println("Thank you for playing!");
+        }
+    }
+
+    private static boolean askToPlay(Scanner scanner) {
+        System.out.print("Enter 1 to play, 0 to Exit: ");
+        int choice = scanner.nextInt();
+        return choice == 1;
+    }
+
+    private static void playGame(Scanner scanner) {
+        int totalRounds = 7;
+        int[] player1Score = new int[7];
+        int[] player2Score = new int[7];
+
+        for (int round = 1; round <= totalRounds; round++) {
+            playRound(round, player1Score, "Player 1", scanner);
+            displayScoreboard(round, player1Score, player2Score);
+
+            playRound(round, player2Score, "Player 2", scanner);
+            displayScoreboard(round, player1Score, player2Score);
+        }
+
+        displayFinalResults(player1Score, player2Score);
+    }
+
+    private static void playRound(int round, int[] playerScore, String playerName, Scanner scanner) {
+        System.out.println("\n-------");
+        System.out.println("Round " + round);
+        System.out.println("-------\n");
+
+        int totalTurns = 3;
+        int totalDices = 5;
+        int score = 0;
+        numberOfDiceToSetAside = 0;
+
+        int category = -1;
+
+        for (int i = 0; i < totalTurns; i++) {
+
+            int numberOfDiceLeft = totalDices - numberOfDiceToSetAside;
+            int turnsLeft = totalTurns - i;
+
+            if (turnsLeft > 0 && numberOfDiceLeft > 1){
+
+                if(i == 0){
+                    System.out.println("First throw of this turn, " + playerName + " to throw " + numberOfDiceLeft + " dice\n");
+
+                    System.out.print("Enter 't' to throw or 'f' to forfeit > ");
+                    String throwDecision = scanner.next().toLowerCase();
+
+                    if (throwDecision.equals("f")) {
+                        System.out.println(playerName + " chose to forfeit this turn.");
+                        break;
+                    } else if (!throwDecision.equals("t")) {
+                        System.out.println("Invalid input. Please enter 't' to throw or 'f' to forfeit.");
+                        i--; // Decrement i to repeat the same turn
+                        continue;
+                    }
+
+                    int[] dice = rollDice(totalDices);
+                    displayDiceRoll(dice);
+
+                    category = chooseCategory(scanner, categoriesSelected);
+                
+                    if (category == -1) {
+                        System.out.println(playerName + " has forfeited this turn.");
+                    } else if (category != 0) { // Skip deferred category selection
+                        System.out.println(playerName + " has selected category " + (category + 1) + ".");
+                    } else{
+                        //if the category is 0 then it will be deferred
+                        System.out.println(playerName + " has deferred the category selection.");
+                    }
+                    
+                    score = calculateScore(dice, category);
+                    updatePlayerScore(playerScore, category, score);
+                    categoriesSelected[category] = true;
+
+                    // sets aside dice with matching category and roll remaining dice
+                    setDice(dice, (category + 1));
+                    
+
+                    // roll remaining dice as per set aside value
+                    rollDice(numberOfDiceLeft);
+                    
+                } else {
+                    System.out.println("");
+                    displayTurnsLeft(round, turnsLeft);
+                    // Player sets aside dice, adjust the number of dice to throw in the second turn
+                    System.out.println("Next throw of this turn, " + playerName + " to throw "+  numberOfDiceLeft + " dice");
+                    System.out.print("Enter 't' to throw or 'f' to forfeit > ");
+                    String throwDecision = scanner.next().toLowerCase();
+
+                    if (throwDecision.equals("f")) {
+                        System.out.println(playerName + " chose to forfeit this turn.");
+                        break;
+                    } else if (!throwDecision.equals("t")) {
+                        System.out.println("Invalid input. Please enter 't' to throw or 'f' to forfeit.");
+                        i--; // Decrement i to repeat the same turn
+                        break;
+                    }
+
+                    int[] dice = rollDice(numberOfDiceLeft);
+                    displayDiceRoll(dice);
+
+
+                    score = calculateScore(dice, category);
+                    updatePlayerScore(playerScore, category, score);
+                    categoriesSelected[category] = true;
+
+
+                    // sets aside dice with matching category and roll remaining dice
+                    setDice(dice, (category + 1));
+                    // roll remaining dice as per set aside value
+                    rollDice(numberOfDiceLeft);
+                }  
+            } else {
+                System.out.println("Your turn has ended.");
+                break;
+            }
+        }
+    }
+
+    private static void displayDiceRoll(int[] dice) {
+        System.out.println("You rolled: " + Arrays.toString(dice));
+    }
+
+    private static int chooseCategory(Scanner scanner, boolean[] categoriesSelected) {
+        while (true) {
+            System.out.print("Select category to play.");
+            System.out.println("");
+            System.out.print("Ones (1) Twos (2) Threes (3) Fours (4) Fives (5) Sixes (6) or Sequence (7) or Defer (d) > ");
+            String userInput = scanner.next().toLowerCase();
+
+            if (userInput.equals("f")) {
+                return -1; // Forfeit the turn
+            } else if (userInput.equals("d")) {
+                return 0; // Defer the category selection
+            } else {
+                int category = parseCategoryInput(userInput);
+
+                if (isValidCategory(category, categoriesSelected)) {
+                    return category;
+                } else {
+                    System.out.println("Invalid category or already selected.");
+                }
+            }            
+        }
+    }
+
+    private static int parseCategoryInput(String input) {
+        
+        int category = Integer.parseInt(input);
+        if (category >= 1 && category <= 7) {
+            return category - 1;
+        } else{
+            return 0;
+        }
+
+    }
+
+    private static boolean isValidCategory(int category, boolean[] categoriesSelected) {
+        return category >= 0 && category <= 6 && !categoriesSelected[category];
+    }
+
+
+//This method will help to put the chosen cateogry as an array of integer which will be traacked
+    private static void setDice(int[] dice, int category) {
+        // Filter dice based on the selected category
+        int[] setAsideDice = Arrays.stream(dice).filter(d -> d == category).toArray();
+
+        // Display the set-aside dice
+        System.out.println("You set aside: " + Arrays.toString(setAsideDice));
+
+        numberOfDiceToSetAside += setAsideDice.length;
+
+        // Update the 'dice' array to remove the set-aside dice
+        for (int i = 0; i < dice.length; i++) {
+            if (dice[i] == category) {
+                dice[i] = 0; // Assuming 0 represents a set-aside die
+            }
+        }
+    }
+
+    private static int[] rollDice(int count) {
+        int[] result = new int[count];
+        for (int i = 0; i < count; i++) {
+            result[i] = random.nextInt(6) + 1;
+        }
+        return result;
+    }
+
+
+    private static void displayTurnsLeft(int round, int turnsLeft) {
+        System.out.println("Round " + round + ": " + turnsLeft + " turns left.");
+    }
+
+    private static void updatePlayerScore(int[] playerScore, int category, int score) {
+        // Skip the update if the category is 0 (deferred category selection)
+        if (category == 0) {
+            return;
+        }
+        playerScore[category] += score;
+    }
+
+    private static int calculateScore(int[] dice, int category) {
+        if (category >= 0 && category <= 5) {
+            int count = (int) Arrays.stream(dice).filter(d -> d == category + 1).count();
+            return count * (category + 1);
+        } else if (category == 6) {
+            Arrays.sort(dice);
+            return Arrays.equals(dice, new int[]{1, 2, 3, 4, 5}) || Arrays.equals(dice, new int[]{2, 3, 4, 5, 6}) ? 20 : 0;
+        } else {
+            return 0;
+        }
+    }
+
+    private static void displayScoreboard(int round, int[] player1Score, int[] player2Score) {
+        System.out.println("\nRound " + round + " Scoreboard");
+        System.out.println("Category\tPlayer 1\tPlayer 2");
+        int player1Total = 0;
+        int player2Total = 0;
+        for (int category = 0; category < 7; category++) {
+            System.out.println((category + 1) + "\t\t" + player1Score[category] + "\t\t" + player2Score[category]);
+            player1Total += player1Score[category];
+            player2Total += player2Score[category];
+        }
+        System.out.println("Total\t\t" + player1Total + "\t\t" + player2Total);
+    }
+
+    private static void displayFinalResults(int[] player1Score, int[] player2Score) {
+        System.out.println("\nFinal Results");
+        System.out.println("Category\tPlayer 1\tPlayer 2");
+        for (int category = 0; category < 7; category++) {
+            System.out.println((category + 1) + "\t\t" + player1Score[category] + "\t\t" + player2Score[category]);
+        }
+
+        if (calculateTotalScore(player1Score) > calculateTotalScore(player2Score)) {
+            System.out.println("Player 1 wins!");
+        } else if (calculateTotalScore(player2Score) > calculateTotalScore(player1Score)) {
+            System.out.println("Player 2 wins!");
+        } else {
+            System.out.println("It's a tie!");
+        }
+    }
+
+    private static int calculateTotalScore(int[] playerScore) {
+        return Arrays.stream(playerScore).sum();
+    }
+}

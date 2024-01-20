@@ -1,0 +1,27 @@
+1995|Jonathan Edwards (ENG),Athletics|Frank Bruno (ENG),Boxing|Colin McRae (SCO),Rallying|Ryder Cup team (EU),Golf,Bernard Gallacher
+1996|Damon Hill (ENG),Formula One|Steve Redgrave (ENG),Rowing|Frankie Dettori (ITA),Horse racing|Olympic rowing pairs (UK),Rowing,N/A
+1997|Greg Rusedski (ENG),Tennis|Tim Henman (ENG),Tennis|Steve Redgrave (ENG),Rowing|British & Irish Lions squad (UK),Rugby union,Martin Johnson	
+1998|Michael Owen (ENG),Football|Denise Lewis (ENG),Athletics|Iwan Thomas (WAL),Athletics|Arsenal F.C. (ENG),Football,Tony Adams
+1999|Lennox Lewis (ENG),Boxing|David Beckham (ENG),Football|Colin Jackson (WAL),Athletics|Manchester United F.C. (ENG),Football,Roy Keane
+2000|Steve Redgrave (ENG),Rowing|Denise Lewis (ENG),Athletics|Tanni Grey-Thompson (WAL),Athletics|Olympic and Paralympic teams (UK),N/A,N/A
+2001|David Beckham (ENG),Football|Ellen MacArthur (ENG),Sailing|Michael Owen (ENG),Football|Liverpool F.C. (ENG),Football,Robbie Fowler
+2002|Paula Radcliffe (ENG),Athletics|David Beckham (ENG),Football|Tony McCoy (NIR),Horse racing|Ryder Cup team (EU),Golf,Sam Torrance
+2003|Jonny Wilkinson (ENG),Rugby union|Martin Johnson (ENG),Rugby union|Paula Radcliffe (ENG),Athletics|England men's rugby union squad (ENG),Rugby union,Martin Johnson	
+2004|Kelly Holmes (ENG),Athletics|Matthew Pinsent (ENG),Rowing|Andrew Flintoff (ENG),Cricket|Olympic men's coxless four (UK),Rowing,N/A
+2005|Andrew Flintoff (ENG),Cricket|Ellen MacArthur (ENG),Sailing|Steven Gerrard (ENG),Football|England men's cricket team (ENG),Cricket,Michael Vaughan
+2006|Zara Phillips (ENG),Eventing|Darren Clarke (NIR),Golf|Beth Tweddle (ENG),Gymnastics|St Helens R.F.C.(ENG),Rugby league,Sean Long
+2007|Joe Calzaghe (WAL),Boxing|Lewis Hamilton (ENG),Formula One|Ricky Hatton (ENG),Boxing|England men's rugby union squad (ENG),Rugby union,Phil Vickery
+2008|Chris Hoy (SCO),Cycling|Lewis Hamilton (ENG),Formula One|Rebecca Adlington (ENG),Swimming|Olympic cycling team (UK),Cycling,N/A
+2009|Ryan Giggs (WAL),Football|Jenson Button (ENG),Formula One|Jessica Ennis (ENG),Athletics|England men's cricket team (ENG),Cricket,Andrew Strauss	
+2010|Tony McCoy (NIR),Horse racing|Phil Taylor (ENG),Darts|Jessica Ennis (ENG),Athletics|Ryder Cup team (EU),Golf,Colin Montgomorie
+2011|Mark Cavendish (IOM),Cycling|Darren Clarke (NIR),Golf|Mo Farah (ENG),Athletics|England men's cricket team (ENG),Cricket,Paul Collingwood	
+2012|Bradley Wiggins (ENG),Cycling|Jessica Ennis (ENG),Athletics|Andy Murray (SCO),Tennis|Olympic and Paralympic teams (UK),N/A,N/A
+2013|Andy Murray (SCO),Tennis|Leigh Halfpenny (WAL),Rugby union|Tony McCoy (NIR),Horse racing|British & Irish Lions squad (UK),Rugby union,Sam Warburton
+2014|Lewis Hamilton (ENG),Formula One|Rory McIlroy (NIR),Golf|Jo Pavey (ENG),Athletics|England women's rugby union squad (ENG),Rugby union,Katy Mclean
+2015|Andy Murray (SCO),Tennis|Kevin Sinfield (ENG),Rugby league|Jessica Ennis-Hill (ENG),Athletics|Great Britain Davis Cup team (UK),Tennis,Andy Murray
+2016|Andy Murray (SCO),Tennis|Alistair Brownlee (ENG),Triathlon|Nick Skelton (ENG),Show jumping|Leicester City F.C. (ENG),Football,Wes Morgan
+2017|Mo Farah (ENG),Athletics|Jonathan Rea (NIR),Motorcycle racing|Jonnie Peacock (ENG),Athletics|England women's cricket team (ENG),Cricket,Heather Knight	
+2018|Geraint Thomas (WAL),Cycling|Lewis Hamilton (ENG),Formula One|Harry Kane (ENG),Football|England national netball team (ENG),Netball,Serena Guthrie
+2019|Ben Stokes (ENG),Cricket|Lewis Hamilton (ENG),Formula One|Dina Asher-Smith (ENG),Athletics|England men's cricket team (ENG),Cricket,Eoin Morgan
+2020|Lewis Hamilton (ENG),Formula One|Jordan Henderson (ENG),Football|Hollie Doyle (ENG),Horse racing|Liverpool F.C. (ENG),Football,Jordan Henderson
+2021|Emma Raducanu (ENG),Tennis|Tom Daley (ENG),Diving|Adam Peaty (ENG),Swimming|England men's football team (ENG),Football,Harry Kane
